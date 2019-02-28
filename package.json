@@ -1,0 +1,23 @@
+{
+  "name": "pt-tech",
+  "version": "0.0.1",
+  "description": "The dating app feature for Project Tech in blok 3.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iSirThijs/pt-tech.git"
+  },
+  "author": "Thijs Spijker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iSirThijs/pt-tech/issues"
+  },
+  "homepage": "https://github.com/iSirThijs/pt-tech#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
