@@ -1,8 +1,10 @@
 # Project Tech
 In this repositority will be the progres and final result of my participation in project Tech blok 3.
 
+for my research and timeframe see the Wiki
+
 ## License
-See [License](#) for more info.
+See [License](https://github.com/iSirThijs/pt-tech/blob/master/LICENSE) for more info.
 
 **Additional note for HvA students:**
 
