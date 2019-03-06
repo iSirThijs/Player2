@@ -62,6 +62,35 @@ section h2 {
 }
 
 /* article with game settings */
+.addgame article {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px 5px;
+	align-items: center;
+	/* height: 2em; */
+	border-top: 1px solid var(--line);
+}
+
+.addgame article > div {
+	width: 55px;
+	height: 80px;
+	border: 1px dashed var(--secondary-accent);
+	margin-left: 45px;
+	box-sizing: border-box;
+	background-image: url('add-icon.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 40%;
+	order: 2;
+	flex: 0 0 auto;
+	border-radius: 5px;
+}
+
+.addgame {
+	color: var(--secondary-accent);
+	text-decoration: none;
+}
+
 .game {
 	display: flex;
 	justify-content: space-around;
@@ -75,6 +104,7 @@ section h2 {
 	border: none;
 }
 
+.addgame h3,
 .game h3 {
 	font-size: 1em;
 	font-weight: normal;
@@ -84,24 +114,12 @@ section h2 {
 	margin: 0;
 }
 
-.game img, .game div {
+.game img {
 	max-height: 80px;
 	max-width: 55px;
 	order: 2;
 	flex: 0 0 auto;
 	border-radius: 5px;
-}
-
-.game div {
-	width: 55px;
-	height: 80px;
-	border: 1px dashed var(--secondary-accent);
-	margin-left: 45px;
-	box-sizing: border-box;
-	background-image: url('add-icon.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 40%;
 }
 
 .game form {
@@ -119,8 +137,14 @@ section h2 {
 	background-color: rgba(255, 255, 255, 0);
 	height: 100%;
 	width: 100%;
-	background-image: url('trash.png');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60%;
+}
+
+.trashIcon {
+	background-image: url('trash.png');
+}
+.addIcon {
+	background-image: url('add-icon.svg');
 }

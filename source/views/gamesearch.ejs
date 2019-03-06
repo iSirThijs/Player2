@@ -1,26 +1,20 @@
 <% include head.ejs %>
-<title>My Games</title>
+<title>Add games</title>
 </head>
 <body>
 	<header>
 		<h1>Profile</h1>
-		<h1>my games</h1>
+		<h1>add game</h1>
 	</header>
 	<main>
+		<!-- <a href="./games">back</a> -->
 		<section>
-			<h2>Other games</h2>
-			<a href="gamesearch" class="addgame">
-				<article>
-					<h3>Add Game</h3>
-					<div></div>
-				</article>
-			</a>
 			<% for (var index = 0; index <data.length; index++) { %>
 			<article class="game">
 				<h3><%= data[index].title %></h3>
 				<img src=<%= data[index].img %>>
-				<form class="" action="delete/<%= data[index].id %>" method="post">
-					<button type="submit" class="trashIcon"></button>
+				<form class="" action="gamesearch/<%= data[index].id %>" method="post">
+					<button type="submit" class="addIcon"></button>
 				</form>
 			</article>
 			<% } %>
