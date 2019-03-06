@@ -1,0 +1,29 @@
+<% include head.ejs %>
+<title>My Games</title>
+</head>
+<body>
+	<header>
+		<h1>Profile</h1>
+		<h1>my games</h1>
+	</header>
+	<main>
+		<section>
+			<h2>Other games</h2>
+			<article class="game">
+				<h3>add game</h3>
+				<div class="">
+				</div>
+			</article>
+			<% for (var index = 0; index <data.length; index++) { %>
+			<article class="game">
+				<h3><%= data[index].title %></h3>
+				<img src=<%= data[index].img %>>
+				<form class="" action="index.html" method="post">
+					<button type="submit" name="button"></button>
+				</form>
+			</article>
+			<% } %>
+		</section>
+	</main>
+</body>
+</html>

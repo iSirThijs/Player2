@@ -2,10 +2,10 @@
   "name": "pt-tech",
   "version": "0.0.1",
   "description": "The dating app feature for Project Tech in blok 3.",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "nodemonStart": "nodemon index.js",
-    "start": "node index.js",
+    "nodemonStart": "nodemon server/index.js",
+    "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +20,9 @@
   "homepage": "https://github.com/iSirThijs/pt-tech#readme",
   "devDependencies": {
     "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
   }
 }
