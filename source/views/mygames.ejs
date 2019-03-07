@@ -3,14 +3,13 @@
 </head>
 <body class="no-js">
 	<header>
-		<h1>Profile</h1>
-		<h1>my games</h1>
+		<%# include header.ejs %>
 	</header>
 	<main>
-		<section>
-			<h2>Other games</h2>
-			<a href="gamesearch" class="addgame">
-				<article>
+		<h1>Profile<span>my games</span></h1>
+		<section class="games-list">
+			<a href="gamesearch" id="addgame">
+				<article class ="game">
 					<h3>Add Game</h3>
 					<div class="addIcon"></div>
 				</article>
@@ -26,6 +25,6 @@
 			<% } %>
 		</section>
 	</main>
-	<script src="/scripts/gameslibrary.js"></script>
+	<script src="/scripts/gamelibrary.js"></script>
 </body>
 </html>

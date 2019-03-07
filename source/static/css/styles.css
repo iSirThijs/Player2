@@ -24,123 +24,112 @@ body {
 	margin: 0;
 }
 
-h1 {
-	font-family: var(--font-heading);
-}
-
 /* Header settings */
 header {
 	background-color: var(--bg1);
-	padding: 0 10px;
-	padding-top: 3rem;
-	height: 100%;
-	border-bottom: 1px solid var(--alt-primary-accent);
+	height: 1em;
+
 }
 
-header h1 {
-	display: inline-block;
+/* Street Sign */
+h1 {
+	font-family: var(--font-heading);
+	background-color: var(--bg1);
 	font-size: 2.5em;
 	margin: 0;
+	border-bottom: 1px solid var(--alt-primary-accent);
+	width: 100%;
 }
 
-header h1:last-child {
-	font-size: 1.25em;
+h1 span {
+	font-size: 50%;
+	margin-left: 5px;
 	color: var(--primary-accent);
 }
 
 
 /* main settings */
-main > section {
+.games-list {
 	background-color: var(--bg3);
 	max-width: 30rem;
 	margin: 10px;
 	border-radius: 10px;
 }
 
-section h2 {
-	display: none;
-}
-
 /* article with game settings */
-.addgame article {
-	display: flex;
-	justify-content: space-around;
-	padding: 10px 5px;
-	align-items: center;
-	/* height: 2em; */
-	border-top: 1px solid var(--line);
-}
-
-.addgame article > div {
-	width: 55px;
-	height: 80px;
-	border: 1px dashed var(--secondary-accent);
-	margin-left: 45px;
-	box-sizing: border-box;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 40%;
-	order: 2;
-	flex: 0 0 auto;
-	border-radius: 5px;
-}
-
-.addgame {
-	color: var(--secondary-accent);
-	text-decoration: none;
-}
-
 .game {
 	display: flex;
 	justify-content: space-around;
 	padding: 10px 5px;
-	align-items: center;
-	/* height: 2em; */
+	align-items: stretch;
 	border-top: 1px solid var(--line);
+	box-sizing: border-box;
 }
 
-.game:first-child {
-	border: none;
+.game > * {
+	box-sizing: inherit;
 }
 
-.addgame h3,
+.game:first-child
+{
+	border: none; /* hide line on top if #addgame is not visible*/
+}
+
 .game h3 {
+	order: 3;
+	flex: 1 1 100%;
 	font-size: 1em;
 	font-weight: normal;
-	order: 3;
-	flex-grow: 2;
-	padding: 0 15px;
-	margin: 0;
+	margin: 0 15px;
+	display: flex;
+	align-items: center;
 }
 
-.game img {
-	max-height: 80px;
-	max-width: 55px;
+.game img,
+#addgame div {
 	order: 2;
 	flex: 0 0 auto;
+	max-height: 80px;
+	max-width: 55px;
 	border-radius: 5px;
 }
 
 .game form {
 	order: 1;
-	flex: 0 0 auto;
+	flex: 0 0 40px;
 	margin: 0;
 	margin-right: 5px;
-	width: 40px;
-	height: 40px;
 }
 
 .game button {
 	padding: 0;
 	border: none;
-	background-color: rgba(255, 255, 255, 0);
 	height: 100%;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 60%;
+	background-color: rgba(255, 255, 255, 0);
 }
 
+#addgame div {
+	width: 55px;
+	height: 80px;
+	margin-left: 45px;
+	border: 1px dashed var(--secondary-accent);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 40%;
+}
+
+#addgame {
+	color: var(--secondary-accent);
+	text-decoration: none;
+}
+
+
+/* icons and background images */
+/* maybe place this to seperate css file */
 .trashIcon {
 	background-image: url('/icons/trash.png');
 }

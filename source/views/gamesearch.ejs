@@ -3,12 +3,11 @@
 </head>
 <body>
 	<header>
-		<h1>Profile</h1>
-		<h1>add game</h1>
+		<%# include header.ejs %>
 	</header>
 	<main>
-		<!-- <a href="./games">back</a> -->
-		<section>
+		<h1>Profile<span>my games</span></h1>
+		<section class="games-list">
 			<% for (var index = 0; index <data.length; index++) { %>
 			<article class="game">
 				<h3><%= data[index].title %></h3>
