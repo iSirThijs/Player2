@@ -77,7 +77,6 @@ section h2 {
 	border: 1px dashed var(--secondary-accent);
 	margin-left: 45px;
 	box-sizing: border-box;
-	background-image: url('add-icon.svg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 40%;
@@ -143,8 +142,8 @@ section h2 {
 }
 
 .trashIcon {
-	background-image: url('trash.png');
+	background-image: url('/icons/trash.png');
 }
 .addIcon {
-	background-image: url('add-icon.svg');
+	background-image: url('/icons/add-icon.svg');
 }

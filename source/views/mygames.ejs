@@ -1,7 +1,7 @@
 <% include head.ejs %>
 <title>My Games</title>
 </head>
-<body>
+<body class="no-js">
 	<header>
 		<h1>Profile</h1>
 		<h1>my games</h1>
@@ -12,7 +12,7 @@
 			<a href="gamesearch" class="addgame">
 				<article>
 					<h3>Add Game</h3>
-					<div></div>
+					<div class="addIcon"></div>
 				</article>
 			</a>
 			<% for (var index = 0; index <data.length; index++) { %>
@@ -26,5 +26,6 @@
 			<% } %>
 		</section>
 	</main>
+	<script src="/scripts/gameslibrary.js"></script>
 </body>
 </html>

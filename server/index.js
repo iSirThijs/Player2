@@ -1,6 +1,7 @@
 const express = require('express')
 const server = express()
 
+// This data is temporary until there is an api and database connection
 var data = []
 var newData = [
 	{
