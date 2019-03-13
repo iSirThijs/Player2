@@ -7,13 +7,13 @@
 	</header>
 	<main>
 		<h1>Profile<span>my games</span></h1>
-		<section class="games-list">
+		<section id="games-list">
 			<% for (var index = 0; index <data.length; index++) { %>
 			<article class="game">
 				<h3><%= data[index].title %></h3>
 				<img src=<%= data[index].img %>>
 				<form class="" action="gamesearch/<%= data[index].id %>" method="post">
-					<button type="submit" class="addIcon"></button>
+					<button type="submit" class="addIcon">Add Game</button>
 				</form>
 			</article>
 			<% } %>

@@ -7,7 +7,7 @@
 	</header>
 	<main>
 		<h1>Profile<span>my games</span></h1>
-		<section class="games-list">
+		<section id="games-list">
 			<a href="gamesearch" id="addgame">
 				<article class ="game">
 					<h3>Add Game</h3>
@@ -19,7 +19,7 @@
 				<h3><%= data[index].title %></h3>
 				<img src=<%= data[index].img %>>
 				<form class="" action="delete/<%= data[index].id %>" method="post">
-					<button type="submit" class="trashIcon"></button>
+					<button type="submit" class="trashIcon">Delete</button>
 				</form>
 			</article>
 			<% } %>
