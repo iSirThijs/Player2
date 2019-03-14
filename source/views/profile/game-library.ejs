@@ -1,25 +1,30 @@
-<% include head.ejs %>
+<% include ../head.ejs %>
 <title>My Games</title>
 </head>
 <body class="no-js">
 	<header>
-		<%# include header.ejs %>
+		<% include ../header.ejs %>
 	</header>
 	<main>
 		<h1>Profile<span>my games</span></h1>
-		<section id="games-list">
-			<a href="gamesearch" id="addgame">
-				<article class ="game">
+		<section>
+			<header>
+				<h2>All Games</h2>
+				<button type="button" name="button" id="edit-button">Edit</button>
+			</header>
+			<a href="gamesearch" id="link-add-game">
+				<article class="card-add-game">
 					<h3>Add Game</h3>
-					<div class="addIcon"></div>
+					<div class="card-add-game-outline"></div>
+					<div class="card-add-game-icon icon-plus"></div>
 				</article>
 			</a>
 			<% for (var index = 0; index <data.length; index++) { %>
-			<article class="game">
+			<article class="card-game">
 				<h3><%= data[index].title %></h3>
 				<img src=<%= data[index].img %>>
-				<form class="" action="delete/<%= data[index].id %>" method="post">
-					<button type="submit" class="trashIcon">Delete</button>
+				<form action="delete/<%= data[index].id %>" method="post">
+					<button class="icon-trash"type="submit">Delete</button>
 				</form>
 			</article>
 			<% } %>

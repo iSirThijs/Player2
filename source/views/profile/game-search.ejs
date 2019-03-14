@@ -1,4 +1,4 @@
-<% include head.ejs %>
+<% include ../head.ejs %>
 <title>Add games</title>
 </head>
 <body>
@@ -7,13 +7,13 @@
 	</header>
 	<main>
 		<h1>Profile<span>my games</span></h1>
-		<section id="games-list">
+		<section>
 			<% for (var index = 0; index <data.length; index++) { %>
-			<article class="game">
+			<article class="card-game">
 				<h3><%= data[index].title %></h3>
 				<img src=<%= data[index].img %>>
 				<form class="" action="gamesearch/<%= data[index].id %>" method="post">
-					<button type="submit" class="addIcon">Add Game</button>
+					<button class="icon-plus" type="submit" class="addIcon">Add Game</button>
 				</form>
 			</article>
 			<% } %>
