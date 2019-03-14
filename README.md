@@ -1,19 +1,40 @@
 # Project Tech
-In this repository will be the progress and final result of my participation in project Tech blok 3.
+This repository and wiki are my work for the assignments given to me for blok Tech. Blok tech is offered by the bachelor study [Communciation and Multimedia Design at the Hogeschool van Amsterdam](https://www.cmd-amsterdam.nl)
 
-for my research and timeframe see the Wiki
+Blok tech consists of the subjects:
+* [Project Tech](https://github.com/cmda-bt/pt-course-18-19)
+* [JS Bootcamp](https://github.com/cmda-bt/js-bootcamp-18-19)
+	* *My notes and assignments for the JS bootcamp are in a different repository: [js-bootcamp](https://github.com/iSirThijs/js-bootcamp)*
+* [Frontend](https://github.com/cmda-bt/be-course-18-19)
+* [Backend](https://github.com/cmda-bt/fe-course-18-19)
 
-## License
+# Project Tech assignment
+From the [project tech repository](https://github.com/cmda-bt/pt-course-18-19):
+>In Project Tech you'll build a dynamic prototype of a web application. In different roles you take a well-argued position on, among other things, the privacy and security aspects of the application. You'll also learn to navigate the command line, version control with Git & GitHub and make sure code style is consistent.
+
+The web application is a dating app to find a serious relationship. For my project I have to decided to focus this on gamers. This will be my starting point. Some ideas I have about an dating app for gamers:
+
+* Matching using the players favorite game and play time in games
+* Matching people according to game genres
+* Finding new friends to play with in addition to dating
+
+**Working feature**
+* adding and deleting games to the library
+
+# License
 See [License](https://github.com/iSirThijs/pt-tech/blob/master/LICENSE) for more info.
 
 **Additional note for HvA students:**
 
 Using this work without mentioning the source is not allowed. See also the website from [HvA](https://az.hva.nl/studenten/az-lemmas/studenten/hva-breed/juridische-zaken/fraude-en-plagiaat/fraude-en-plagiaat.html)
 
-## Install & Usage
+# Install
 1. Clone the repository onto the computer
 2. Run `npm install`
 	* the app uses the application uses [nodemon](https://www.npmjs.com/package/nodemon) to keep the application running. If you don't want to install nodemon use the production flag with npm install: `npm install --production`
-3.
-	* Use `npm start` to start the application without nodemon.
-	* Use `npm nodemonStart` to start the application with nodemon.
+
+# Usage
+1. Start the server
+	* use `npm run nodemon` to start the app with nodemon enabled
+	* use `npm start` to start without nodemon
+2. go to [localhost:8000/profile/games](localhost:8000/profile/games) to use the feature.
