@@ -4,7 +4,7 @@
   "description": "The dating app feature for Project Tech in blok 3.",
   "main": "server/index.js",
   "scripts": {
-    "nodemonStart": "nodemon server/index.js",
+    "nodemon": "nodemon server/index.js",
     "start": "node server/index.js"
   },
   "repository": {
