@@ -169,8 +169,8 @@ section header button {
 }
 
 /* Icons and Background images */
-.icon-trash { background-image: url('/icons/trash.png'); }
-.icon-plus { background-image: url('/icons/plus.svg'); }
+.icon-trash { background-image: url('/static/icons/trash.png'); }
+.icon-plus { background-image: url('/static/icons/plus.svg'); }
 
 /* toggle classes */
 .no-js section header button {

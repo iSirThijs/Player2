@@ -31,10 +31,9 @@ Using this work without mentioning the source is not allowed. See also the websi
 # Install
 1. Clone the repository onto the computer
 2. Run `npm install`
-	* the app uses the application uses [nodemon](https://www.npmjs.com/package/nodemon) to keep the application running. If you don't want to install nodemon use the production flag with npm install: `npm install --production`
 
 # Usage
 1. Start the server
-	* use `npm run nodemon` to start the app with nodemon enabled
+	* use `nodemon` to start the app with nodemon
 	* use `npm start` to start without nodemon
 2. go to [localhost:8000/profile/games](localhost:8000/profile/games) to use the feature.

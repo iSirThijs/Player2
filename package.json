@@ -2,10 +2,10 @@
   "name": "pt-tech",
   "version": "0.0.1",
   "description": "The dating app feature for Project Tech in blok 3.",
-  "main": "server/index.js",
+  "main": "server.js",
   "scripts": {
-    "nodemon": "nodemon server/index.js",
-    "start": "node server/index.js"
+    "nodemon": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

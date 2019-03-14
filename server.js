@@ -1,11 +1,11 @@
 const express = require('express');
 const server = express();
-const gameLibrary = require('./utils/gamelibrary.js')
+const gameLibrary = require('./controllers/gamelibrary.js')
 
 server
-	.use(express.static('./source/static'))
+	.use('/static', express.static('./public'))
 	.set('view engine', 'ejs')
-	.set('views', './source/views' )
+	.set('views', './views' )
 	.get('/profile/games', gameLibrary.libraryRender)
 	.get('/profile/gamesearch', gameLibrary.searchRender)
 	.post('/profile/gamesearch/:id', gameLibrary.addGame)
