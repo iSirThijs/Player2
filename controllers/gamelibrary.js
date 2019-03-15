@@ -1,3 +1,7 @@
+const express = require('express');
+const router = express.Router();
+const gameSearch = require('./search.js');
+
 // This data is temporary until there is an api and database connection
 var data = [
 	{
@@ -14,15 +18,16 @@ var newData = [
 	}
 ];
 
-exports.libraryRender = function(req, res){
-	res.render('profile/game-library.ejs', {data: data});
-};
+router.get('/', libraryRender)
+	.post('/delete/:id', deleteGame)
+	.post('/:id', addGame)
+	.use('/search', gameSearch);
 
-exports.searchRender = function(req, res) {
-	res.render('profile/game-search.ejs', {data: newData});
+function libraryRender(req, res){
+	res.render('profile/game-library.ejs', {data: data});
 }
 
-exports.addGame = function(req, res) {
+function addGame (req, res) {
 	let id = req.params.id;
 	let game = newData.filter(function (value) {
 		return value.id == id;
@@ -31,10 +36,10 @@ exports.addGame = function(req, res) {
 	newData = newData.filter(function (value) {
 		return value.id !== id;
 	});
-	res.status(200).redirect('/profile/games');
+	res.status(200).redirect('/games');
 }
 
-exports.deleteGame = function(req, res) {
+function deleteGame(req, res) {
 	let id = req.params.id;
 	let game = data.filter(function (value) {
 		return value.id == id;
@@ -43,5 +48,7 @@ exports.deleteGame = function(req, res) {
 	data = data.filter(function (value) {
 		return value.id !== id;
 	});
-	res.status(200).redirect('/profile/games');
+	res.status(200).redirect('/games');
 }
+
+module.exports = router;

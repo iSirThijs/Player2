@@ -184,7 +184,7 @@ section header button {
 	max-height: 0;
 }
 
-.js .edit-mode form {
+.js .card-game.edit-mode form {
 	/* this shows the delete button */
 	max-width: 40px;
 	max-height: none;
