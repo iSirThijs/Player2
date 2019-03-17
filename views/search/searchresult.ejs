@@ -7,10 +7,7 @@
 	</header>
 	<main>
 		<h1>Profile<span>my games</span></h1>
-		<form class="" action="search/query" method="get">
-			<input type="text" name="q" value="">
-			<button type="submit">Search</button>
-		</form>
+		<% include ./searchform.ejs %>
 		<section>
 			<% for (var index = 0; index <data.length; index++) { %>
 			<article class="card-game">
@@ -22,6 +19,7 @@
 			</article>
 			<% } %>
 		</section>
+		<<a href="">Previous Page</a><a href="#">Next Page</a>
 	</main>
 </body>
 </html>

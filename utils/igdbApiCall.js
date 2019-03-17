@@ -1,4 +1,3 @@
-require('dotenv');
 const request = require('apicalypse').default;
 const requestOptions =
 	{
@@ -7,7 +6,7 @@ const requestOptions =
 		baseURL: 'https://api-v3.igdb.com',
 		headers: {
 			'Accept' : 'application/json',
-			'user-key' : '50e14a7ffa9e56521322e64428db7586'
+			'user-key' : process.env.IGDB_API_KEY
 		},
 		responseType: 'json'
 	};
@@ -15,7 +14,7 @@ const requestOptions =
 
 exports.imageLink = function(id, size) {
 	return new Promise(
-		function (resolve, reject) {
+		function (resolve) {
 			request(requestOptions)
 				.fields('image_id')
 				.limit(1)
@@ -25,9 +24,9 @@ exports.imageLink = function(id, size) {
 					let img = 'https://images.igdb.com/igdb/image/upload/t_' + size + '/' + response.data[0].image_id + '.png';
 					resolve(img);
 				})
-				.catch(function (val) {
-					let img = false;
-					reject(img);
+				.catch(function () {
+					let img = '/static/icons/notfound.png';
+					resolve(img);
 				});
 		}
 	);
@@ -43,10 +42,10 @@ exports.findGame = function(query) {
 				.request('/games')
 				.then(function (response) {
 					resolve(response.data);
-				})
-				.catch(function (response) {
+				}
+				)
+				.catch((response) => {
 					reject(response);
 				});
-		}
-	);
+		});
 };

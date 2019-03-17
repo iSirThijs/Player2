@@ -1,56 +1,59 @@
-require('dotenv'); //eslint-disable-line
 const express = require('express');
 const router = express.Router();
 const igdbApi = require('../utils/igdbApiCall.js');
 
-var url;
-var resultData = [];
-
-router.get('/', searchRender);
+router.get('/', searchZero);
 router.get('/query?', searchResults);
 router.use(notFound);
 
-function searchRender(req, res) {
-	res.render('profile/search.ejs', {data: resultData});
-	let baseUrl = req.baseUrl.split('/');
-	console.log(baseUrl); //eslint-disable-line
-	baseUrl.pop();
-	url = baseUrl.join('/');
-	console.log(url); //eslint-disable-line
+function searchZero(req, res) {
+	res.render('search/searchresult.ejs', {data : [ ]});
 }
 
 function searchResults(req, res) {
-	resultData = [];
-	igdbApi.findGame(req.query.q).then(function (queryResults) {
-		for (let i = 0; i < queryResults.length; i++) {
-			igdbApi.imageLink(queryResults[i].cover, 'cover_small').then(function(imgLink) {
-				resultData.push(
-					{
-						id: queryResults[i].id,
-						title: queryResults[i].name,
-						img: imgLink
-					}
-				);
-			})
-				.catch(function (imgLink) {
-					if (!imgLink) {
-						resultData.push(
-							{
-								id: queryResults[i].id,
-								title: queryResults[i].name,
-								img: '/static/icons/notfound.png'
-							}
-						);
-					}
-				});
+	igdbApi.findGame(req.query.q)
+		.then(function (apiResults) {
+			resultsList(apiResults)
+				.then((resultData) => {
+					res.render('search/searchresult.ejs', {data : resultData});
+				})
+				.catch((error) => res.send('there was a problem with rendering' + error));
 		}
-	}).then(() => {
-		res.redirect( url + '/search');
-	});
+		)
+		.catch((error) => res.send('there was a problem with the query ' + error));
 }
 
 function notFound(req, res) {
 	res.send('cannot find ' + req.url);
+}
+
+function resultsList(apiResults) {
+	return new Promise(function(resolve) {
+		let promises = [];
+
+		for (let i = 0; i < apiResults.length; i++) {
+			promises.push(
+				new Promise(function(resolve) {
+					igdbApi.imageLink(apiResults[i].cover, 'cover_small')
+						.then((imgLink) => resolve(imgLink));
+				})
+			);
+		}
+
+		Promise.all(promises).then(function (imgLink) {
+			let resultsArray = [];
+			for (let i = 0; i < apiResults.length; i++) {
+				resultsArray.push(
+					{
+						id: apiResults[i].id,
+						title: apiResults[i].name,
+						img: imgLink[i]
+					}
+				);
+			}
+			resolve(resultsArray);
+		});
+	});
 }
 
 module.exports = router;
