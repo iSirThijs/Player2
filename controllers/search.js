@@ -1,9 +1,7 @@
 require('dotenv'); //eslint-disable-line
 const express = require('express');
 const router = express.Router();
-// const db = require('../models/data.js');
-const igdb = require('igdb-api-node').default;
-const igdbClient = igdb('50e14a7ffa9e56521322e64428db7586');
+const igdbApi = require('../utils/igdbApiCall.js');
 
 var url;
 var resultData = [];
@@ -14,27 +12,40 @@ router.use(notFound);
 
 function searchRender(req, res) {
 	res.render('profile/search.ejs', {data: resultData});
-	var baseUrl = req.baseUrl.split('/');
+	let baseUrl = req.baseUrl.split('/');
+	console.log(baseUrl); //eslint-disable-line
 	baseUrl.pop();
 	url = baseUrl.join('/');
+	console.log(url); //eslint-disable-line
 }
 
 function searchResults(req, res) {
-	igdbClient.games({
-		limit: 1,
-		offset: 0,
-		search: req.query.q
-	}, [
-		'name',
-		'id',
-	]).then(function (response) {
-		let results = response.body;
-		console.log(results); //eslint-disable-line
-		resultData.push(results);
-		res.redirect(url + '/search');
-	}).catch(function (reason) {
-		console.log('There was an error: ' + reason); //eslint-disable-line
-		res.redirect(url + '/search');
+	resultData = [];
+	igdbApi.findGame(req.query.q).then(function (queryResults) {
+		for (let i = 0; i < queryResults.length; i++) {
+			igdbApi.imageLink(queryResults[i].cover, 'cover_small').then(function(imgLink) {
+				resultData.push(
+					{
+						id: queryResults[i].id,
+						title: queryResults[i].name,
+						img: imgLink
+					}
+				);
+			})
+				.catch(function (imgLink) {
+					if (!imgLink) {
+						resultData.push(
+							{
+								id: queryResults[i].id,
+								title: queryResults[i].name,
+								img: '/static/icons/notfound.png'
+							}
+						);
+					}
+				});
+		}
+	}).then(() => {
+		res.redirect( url + '/search');
 	});
 }
 
