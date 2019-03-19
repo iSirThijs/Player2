@@ -6,7 +6,8 @@ const db = require('../models/data.js');
 // This data is temporary until there is an api and database connection
 var data = [];
 
-router.get('/', libraryRender)
+router
+	.get('/', libraryRender)
 	.post('/delete/:id', deleteGame)
 	.post('/:id', addGame)
 	.use('/search', gameSearch);

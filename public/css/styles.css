@@ -33,7 +33,37 @@ a {
 /* Header settings */
 body > header {
 	background-color: var(--bg1);
-	height: 1em;
+	width: 100%;
+	height: 3.75em;
+}
+
+body > header nav ul {
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body > header nav li {
+	flex: 1 0 25%;
+}
+
+body > header nav a,
+body > header nav a:visited {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	display: block;
+	padding: 3em 1em .25em;
+	text-align: center;
+	font-size: 80%;
+	transition: border-bottom-width .2s ease-in-out;
+}
+
+body > header nav a:hover,
+body > header nav a:active {
+	border-bottom: 2px solid var(--secondary-accent);
 }
 
 /* Street Sign */
@@ -56,6 +86,9 @@ h1 span {
 
 /* Standard Section */
 section {
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
 	max-width: 30rem;
 	margin: 10px;
 	border-radius: 10px;
@@ -64,6 +97,7 @@ section {
 }
 
 section header {
+	align-self: stretch;
 	height: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -72,6 +106,7 @@ section header {
 
 section header h2 {
 	flex-grow: 2;
+	align-self: stretch;
 	margin: 10px 10px 0;
 	font-family: var(--font-heading);
 	font-weight: normal;
@@ -84,6 +119,17 @@ section header button {
 	color: var(--secondary-accent);
 	font-weight: bold;
 	padding-top: 1em;
+}
+
+section p,
+section a {
+	margin: 10px;
+}
+
+section a {
+	font-weight: bold;
+	color: var(--primary-accent);
+	text-decoration: underline;
 }
 
 /* Section Contents */
@@ -197,4 +243,36 @@ section header button {
 
 .js #link-add-game.edit-mode {
 	max-height: 100px;
+}
+
+#login form {
+	display: flex;
+	flex-flow: column;
+	align-self: center;
+}
+
+#login label {
+	font-size: 14px;
+	margin-top: 1em;
+	margin-bottom: .2em;
+	font-weight: bold;
+}
+
+#login input {
+	align-self: center;
+	color: var(--font-body-color);
+	padding: 10px;
+	background-color: var(--bg2);
+	border: dashed 1px var(--secondary-accent);
+	border-radius: 5px;
+	width: 15em;
+}
+
+#login button {
+	padding: 10px;
+	margin: 1em 0;
+	align-self: flex-end;
+	background-color: var(--secondary-accent);
+	border: none;
+	border-radius: 5px;
 }
