@@ -1,25 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../models/data.js');
+const igdbApi = require('../utils/igdbApiCall.js');
+const gamecard = require('./gamecarddata.js');
 
-// Data to use for the search will be replaced by the API call
-var url;
-var resultData = [];
-
-router.get('/', searchRender);
-router.get('/query?', searchResults);
+router.get('/', searchZero);
+router.get('/query?', renderResults);
 router.use(notFound);
 
-function searchRender(req, res) {
-	res.render('profile/search.ejs', {data: resultData});
-	var baseUrl = req.baseUrl.split('/');
-	baseUrl.pop();
-	url = baseUrl.join('/');
+function searchZero(req, res) {
+	res.render('search/searchresult.ejs', {data : [ ], query: [] });
 }
 
-function searchResults(req, res) {
-	resultData = db;
-	res.redirect(url + '/search');
+function renderResults(req, res) {
+	igdbApi.findGame(req.query.q)
+		.then(function (apiResults) {
+			gamecard.resultsList(apiResults)
+				.then((resultData) => {
+					res.render('search/searchresult.ejs', {data : resultData});
+				});
+		}
+		);
 }
 
 function notFound(req, res) {
