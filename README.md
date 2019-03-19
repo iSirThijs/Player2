@@ -36,14 +36,12 @@ Using this work without mentioning the source is not allowed. See also the websi
 2. Run `npm install`
 
 **to enable the search features**
-1. Edit the file `configuration.js` in the folder `node_modules/igdb-api-node/` change the valeu of url to https://api-v3.igdb.com
+1. Create an IGDB account to get an API key
 2. Create an `.env` file with the following:
 	```
 	IGDB_API_KEY='Put your API key here'
 	```
 
 # Usage
-1. Start the server
-	* use `nodemon` to start the app with nodemon
-	* use `npm start` to start without nodemon
-2. go to [localhost:8000/profile/games](localhost:8000/profile/games) to use the feature.
+1. Start the server with `npm start`
+2. go to [localhost:8000/profile/games](localhost:8000/games) to use the feature.
