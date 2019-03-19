@@ -33,7 +33,5 @@ Using this work without mentioning the source is not allowed. See also the websi
 2. Run `npm install`
 
 # Usage
-1. Start the server
-	* use `nodemon` to start the app with nodemon
-	* use `npm start` to start without nodemon
-2. go to [localhost:8000/profile/games](localhost:8000/profile/games) to use the feature.
+1. Start the server with `npm start`
+2. go to [localhost:8000/profile/games](localhost:8000/games) to use the feature.
