@@ -11,7 +11,7 @@ const requestOptions =
 		responseType: 'json'
 	};
 
-
+// Returns the imagelinkfor a cover from an cover ID. If there is no image, a static file is returned.
 exports.imageLink = function(id, size) {
 	return new Promise(
 		function (resolve) {
@@ -32,6 +32,7 @@ exports.imageLink = function(id, size) {
 	);
 };
 
+// Return an array of objects of 10 games containing the id, cover_id en name.
 exports.findGame = function(query) {
 	return new Promise(
 		function (resolve, reject) {
