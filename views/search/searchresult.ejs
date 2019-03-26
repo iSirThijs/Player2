@@ -4,13 +4,15 @@
 <body>
 	<header>
 		<% include ../partials/header.ejs %>
+		<h1>Profile<span>my games</span></h1>
 	</header>
 	<main>
-		<h1>Profile<span>my games</span></h1>
-		<form class="" action="search/query" method="get">
-			<input type="text" name="q" value="">
-			<button type="submit">Search</button>
-		</form>
+		<section id="search" class="user-input">
+			<form class="" action="search/query" method="get">
+				<input type="text" name="q" value="">
+				<button type="submit">Search</button>
+			</form>
+		</section>
 		<section>
 			<% for (var index = 0; index <data.length; index++) { %>
 			<article class="card-game">
@@ -22,7 +24,6 @@
 			</article>
 			<% } %>
 		</section>
-		<a href="#">More results</a>
 	</main>
 </body>
 </html>
