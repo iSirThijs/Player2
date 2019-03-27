@@ -12,7 +12,7 @@ server
 	.use(session({
 		resave: false, // checked session docs, false is best option(for now)
 		saveUninitialized: true,
-		secret: "Philharmonic"
+		secret: process.env.SESSION_SECRET
 	}))
 	.set('view engine', 'ejs')
 	.set('views', './views' )
@@ -28,7 +28,6 @@ function notFound(req, res) {
 }
 
 function home(req, res) {
-	console.log(req.session) //eslint-disable-line
 	if (req.session.user) {
 		res.send('Hellloo' + req.session.user.username);
 	}

@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "apicalypse": "^0.1.3",
+    "argon2": "^0.21.0",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
