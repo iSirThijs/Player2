@@ -1,8 +1,8 @@
 var data = [
 	{
-	id: 'ac-odyssey',
-	title: 'Assassin\'s Creed Odyssey',
-	img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/99/ACOdysseyCoverArt.png/220px-ACOdysseyCoverArt.png alt=cover-ac'
+		id: 'ac-odyssey',
+		title: 'Assassin\'s Creed Odyssey',
+		img: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/99/ACOdysseyCoverArt.png/220px-ACOdysseyCoverArt.png alt=cover-ac'
 	},
 	{
 		id: 'anno-1800',
@@ -11,4 +11,4 @@ var data = [
 	}
 ];
 
-module.exports = data
+module.exports = data;

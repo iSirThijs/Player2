@@ -30,6 +30,7 @@ a {
 }
 
 input[type=text],
+input[type=date],
 input[type=password],
 input[type=number] {
 	color: var(--font-body-color);
