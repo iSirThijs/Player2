@@ -15,7 +15,11 @@ const User = mongoose.model('User', userSchema, 'users');
 
 exports.add = function(userInfo) {
 	return new Promise(function(resolve, reject) {
-		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
+		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'})
+			.catch((err) => {
+				console.log(err);
+				resolve(false);
+			});
 		const db = mongoose.connection;
 
 		db.on('error', () => reject(false));
@@ -38,7 +42,11 @@ exports.add = function(userInfo) {
 
 exports.login = function(username, password) {
 	return new Promise(function(resolve, reject) {
-		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
+		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'})
+			.catch((err) => {
+				console.log(err);
+				resolve(false);
+			});
 		const db = mongoose.connection;
 
 		db.on('error', () => reject(false));
