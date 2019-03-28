@@ -15,7 +15,7 @@ const User = mongoose.model('User', userSchema, 'users');
 
 exports.add = function(userInfo) {
 	return new Promise(function(resolve, reject) {
-		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate', useNewUrlParser: true });
+		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
 		const db = mongoose.connection;
 
 		db.on('error', () => reject(false));
@@ -38,7 +38,7 @@ exports.add = function(userInfo) {
 
 exports.login = function(username, password) {
 	return new Promise(function(resolve, reject) {
-		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate', useNewUrlParser: true });
+		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
 		const db = mongoose.connection;
 
 		db.on('error', () => reject(false));
