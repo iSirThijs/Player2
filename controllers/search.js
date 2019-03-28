@@ -8,7 +8,7 @@ router.get('/query?', renderResults);
 router.use(notFound);
 
 function searchZero(req, res) {
-	res.render('search/searchresult.ejs', {data : [ ], query: [] });
+	res.render('search/searchresult.ejs', {data : [ ], user: req.session.user });
 }
 
 function renderResults(req, res) {
@@ -16,7 +16,7 @@ function renderResults(req, res) {
 		.then(function (apiResults) {
 			gamecard.resultsList(apiResults)
 				.then((resultData) => {
-					res.render('search/searchresult.ejs', {data : resultData});
+					res.render('search/searchresult.ejs', {data: resultData, user: req.session.user});
 				});
 		}
 		);

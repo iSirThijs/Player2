@@ -28,11 +28,5 @@ function notFound(req, res) {
 }
 
 function home(req, res) {
-	if (req.session.user) {
-		res.send('Hellloo' + req.session.user.username);
-	}
-	else {
-		res.send('helllooo nobody');
-	}
-
+	res.render('home.ejs', { user: req.session.user });
 }

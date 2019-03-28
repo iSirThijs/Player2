@@ -28,10 +28,38 @@ See [License](https://github.com/iSirThijs/pt-tech/blob/master/LICENSE) for more
 
 Using this work without mentioning the source is not allowed. See also the website from [HvA](https://az.hva.nl/studenten/az-lemmas/studenten/hva-breed/juridische-zaken/fraude-en-plagiaat/fraude-en-plagiaat.html)
 
+# Perquisites
+* MongoDB installed
+
 # Install
 1. Clone the repository onto the computer
 2. Run `npm install`
+3. create a directory for the database & log:
+	```bash
+	mkdir data/db data/log
+	````
+4. create a env file with the secrets
+	```
+	IGDB_API_KEY= 'YOUR API KEY'
+	MONGODB='mongodb://localhost:30000/gamedate' or 'YOUR MONGODB PATH'
+	SESSION_SECRET= ' YOUR SECRET'
+	```
+
+
 
 # Usage
-1. Start the server with `npm start`
-2. go to [localhost:8000/profile/games](localhost:8000/games) to use the feature.
+**To start the App**
+1. Navigate to the project folders root
+2. Start the mongod child process using `npm run mongoStart`
+3. Start the server with `npm start`
+4. go to [localhost:8000](localhost:8000) to use the app.
+
+**To close the App**
+1. Close nodemon in the terminal using `ctrl-c`
+2. Don't forget to close the mongod child process:
+	```bash
+	mongo --port 3000 --shell
+	use admin
+	db.shutdown()
+	exit
+	```

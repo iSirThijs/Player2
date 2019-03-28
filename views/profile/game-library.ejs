@@ -7,6 +7,9 @@
 		<h1>Profile<span>my games</span></h1>
 	</header>
 	<main>
+		<% if (!user) { %>
+		<% include ../account/loginForm.ejs %>
+	 	<% } else { %>
 		<section>
 			<header>
 				<h2>All Games</h2>
@@ -29,6 +32,7 @@
 			</article>
 			<% } %>
 		</section>
+		<% } %>
 	</main>
 	<script src="/static/scripts/gamelibrary.js"></script>
 </body>

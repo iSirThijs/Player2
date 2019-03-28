@@ -8,7 +8,8 @@
     "stylelint": "node_modules/.bin/stylelint public/css/*.css",
     "lint": "npm run eslint && npm run stylelint",
     "prestart": "npm run lint",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "mongoStart": "mongod -f mongod.conf",
   },
   "repository": {
     "type": "git",

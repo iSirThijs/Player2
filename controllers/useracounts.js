@@ -3,11 +3,16 @@ const router = express.Router();
 const account = require('../utils/accountUtils.js');
 
 router
-	.get('/', (req, res) => res.send('on the account page'))
+	.get('/', accountPage)
 	.get('/login', loginForm)
 	.post('/login', login)
 	.get('/register', registerForm)
-	.post('/register', register);
+	.post('/register', register)
+	.post('/signout', signOut);
+
+function accountPage(req, res) {
+	res.render('account/accountpage.ejs', { user: req.session.user });
+}
 
 function loginForm(req, res) {
 	res.render('account/login.ejs');
@@ -28,7 +33,7 @@ async function register(req, res) {
 		req.session.user = {username: userInfo.username};
 		res.redirect('/');
 	} else {
-		res.render('account/register.ejs', { userInfo: userInfo, Error: true });
+		res.render('account/register.ejs', { userInfo: userInfo, error: true });
 	}
 }
 
@@ -43,6 +48,10 @@ async function login(req, res) {
 	} else {
 		res.redirect('/');
 	}
+}
+
+function signOut(req, res) {
+	req.session.destroy(() => res.redirect('/'));
 }
 
 module.exports = router;
