@@ -30,7 +30,7 @@ exports.add = function(userInfo) {
 
 			newUser.save( function(err) {
 				if (err) reject(err);
-				else resolve();
+				else resolve(true);
 			});
 		});
 	});
