@@ -27,25 +27,30 @@ function registerForm(req, res) {
 //
 async function register(req, res) {
 	let userInfo = req.body;
-	let savedUser = await	account.add(userInfo);
 
-	if (savedUser) {
-		req.session.user = {username: userInfo.username};
-		res.redirect('/');
-	} else {
+	try {
+		let savedUser = await	account.add(userInfo);
+		if (savedUser) {
+			req.session.user = {username: userInfo.username};
+			res.redirect('/');
+		}
+	} catch(err) {
 		res.render('account/register.ejs', { userInfo: userInfo, error: true });
 	}
+
 }
 
 async function login(req, res) {
-	let username = req.body.username;
-	let password = req.body.password;
-	let login = await account.login(username, password);
+	try {
+		let username = req.body.username;
+		let password = req.body.password;
+		let login = await account.login(username, password);
 
-	if (login) {
-		req.session.user = {username: username};
-		res.redirect('/');
-	} else {
+		if (login) {
+			req.session.user = {username: username};
+			res.redirect('/');
+		}
+	} catch(err) {
 		res.redirect('/');
 	}
 }

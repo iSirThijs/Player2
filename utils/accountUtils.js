@@ -15,14 +15,10 @@ const User = mongoose.model('User', userSchema, 'users');
 
 exports.add = function(userInfo) {
 	return new Promise(function(resolve, reject) {
-		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'})
-			.catch((err) => {
-				console.log(err);
-				resolve(false);
-			});
+		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
 		const db = mongoose.connection;
 
-		db.on('error', () => reject(false));
+		db.on('error', (err) => reject(err));
 		db.once('open', async function () {
 			let newUser = new User({
 				firstname: userInfo.firstname,
@@ -33,8 +29,8 @@ exports.add = function(userInfo) {
 			});
 
 			newUser.save( function(err) {
-				if (err) reject(false);
-				else resolve(true);
+				if (err) reject(err);
+				else resolve();
 			});
 		});
 	});
@@ -42,14 +38,10 @@ exports.add = function(userInfo) {
 
 exports.login = function(username, password) {
 	return new Promise(function(resolve, reject) {
-		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'})
-			.catch((err) => {
-				console.log(err);
-				resolve(false);
-			});
+		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
 		const db = mongoose.connection;
 
-		db.on('error', () => reject(false));
+		db.on('error', (err) => reject(err));
 		db.once('open', async function() {
 			let data = await User.find({ username: username});
 			let user = data && data[0];
@@ -58,7 +50,7 @@ exports.login = function(username, password) {
 				let match = await argon2.verify(user.hash, password);
 				resolve(match);
 			} else {
-				reject(false);
+				reject('This user does not exist');
 			}
 		});
 	});
