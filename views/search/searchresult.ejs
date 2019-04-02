@@ -7,9 +7,7 @@
 		<h1>Profile<span>my games</span></h1>
 	</header>
 	<main>
-		<% if (!user) { %>
-		<% include ../account/loginForm.ejs %>
-		<% } else if (error) { %>
+		<% if (error) { %>
 			<section id="search" class="user-input">
 				<form class="" action="/games/search/query" method="get">
 					<input type="text" name="q" value="">

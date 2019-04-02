@@ -5,6 +5,7 @@ const gameLibrary = require('./controllers/gamelibrary.js');
 const userAccounts = require('./controllers/useracounts.js');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const querystring = require('querystring');
 
 server
 	.use('/static', express.static('./public'))
@@ -19,7 +20,7 @@ server
 	.get('/', home)
 	.use('/account', userAccounts)
 	.get('/login', (req, res) => res.redirect('/account/login'))
-	.use('/games', gameLibrary)
+	.use('/games',  requiresLogin, gameLibrary)
 	.use(notFound)
 	.listen(process.env.PORT || 8000);
 
@@ -29,4 +30,15 @@ function notFound(req, res) {
 
 function home(req, res) {
 	res.render('home.ejs', { user: req.session.user });
+}
+
+function requiresLogin(req, res, next) {
+	if (req.session.user) {
+		next();
+	} else {
+		const query = querystring.stringify({
+			url: req.originalUrl
+		});
+		res.status(403).redirect('/account/login?' + query);
+	}
 }

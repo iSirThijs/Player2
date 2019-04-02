@@ -7,9 +7,6 @@
 		<h1>Account<span>login</span></h1>
 	</header>
 	<main>
-		<% if (!user) { %>
-		<% include ../account/loginForm.ejs %>
-	 	<% } else { %>
 			<section class="user-input">
 				<header>
 					<h2>Sign Out</h2>
@@ -19,7 +16,6 @@
 					<button type="submit" name="signout">Sign Out</button>
 				</form>
 			</section>
-		<% } %>
 	</main>
 </body>
 </html>

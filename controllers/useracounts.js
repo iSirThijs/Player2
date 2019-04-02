@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const account = require('../utils/accountutils.js');
+const querystring = require('querystring');
 
 router
 	.get('/', accountPage)
@@ -15,8 +16,9 @@ function accountPage(req, res) {
 }
 
 function loginForm(req, res) {
+	const query = querystring.stringify(req.query); // express parses the query, but I dont want it to
+	res.locals.query = query;
 	res.render('account/login.ejs');
-	// built login check based on session
 }
 
 function registerForm(req, res) {
@@ -48,7 +50,7 @@ async function login(req, res) {
 
 		if (login) {
 			req.session.user = {username: username};
-			res.redirect('/');
+			res.redirect(req.query.url || '/'); //the originalUrl must be parsed here
 		}
 	} catch(err) {
 		res.redirect('/');
