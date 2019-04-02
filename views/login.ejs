@@ -1,18 +1,26 @@
-<% include ../partials/head.ejs %>
+<% include ./partials/head.ejs %>
 <title>Login</title>
 </head>
 <body class="no-js">
 	<header>
-		<% include ../partials/header.ejs %>
+		<% include ./partials/header.ejs %>
 		<h1>Account<span>login</span></h1>
 	</header>
 	<main>
+		<% if (query) { %>
+			<section>
+				<header>
+					<h2>Login required</h2>
+				</header>
+				<p>You need to login to access this area</p>
+			</section>
+		<% } %>
 		<section id="login" class="user-input">
 			<header>
 				<h2>Login</h2>
 			</header>
-			<p>Have an account? Login here!</p>
-			<form class="" action="/account/login?<%= query %>" method="post">
+			<p>Already have an account? Login here!</p>
+			<form class="" action="/login?<%= query %>" method="post">
 				<label for="username">Username</label>
 				<input type="text" name="username" value="">
 				<label for="password">Password</label>
@@ -25,7 +33,7 @@
 				<h2>New Account</h2>
 			</header>
 			<p>Don't have an account yet?</p>
-			<a href="/account/register">Create one here</a>
+			<a href="/register">Create one here</a>
 		</section>
 	</main>
 </body>

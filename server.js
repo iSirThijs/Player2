@@ -1,11 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const server = express();
-const gameLibrary = require('./controllers/gamelibrary.js');
-const userAccounts = require('./controllers/useracounts.js');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const querystring = require('querystring');
+
+// own modules
+const gameLibrary = require('./controllers/gamelibrary.js');
+const account = require('./controllers/accountpage.js');
+const login = require('./utils/login.js');
+const register = require('./utils/register.js');
 
 server
 	.use('/static', express.static('./public'))
@@ -18,9 +21,12 @@ server
 	.set('view engine', 'ejs')
 	.set('views', './views' )
 	.get('/', home)
-	.use('/account', userAccounts)
-	.get('/login', (req, res) => res.redirect('/account/login'))
-	.use('/games',  requiresLogin, gameLibrary)
+	.get('/register', register.page)
+	.post('/register', register.create)
+	.get('/login', login.page)
+	.post('/login', login.enter)
+	.use('/account', login.require, account)
+	.use('/games', login.require, gameLibrary)
 	.use(notFound)
 	.listen(process.env.PORT || 8000);
 
@@ -30,15 +36,4 @@ function notFound(req, res) {
 
 function home(req, res) {
 	res.render('home.ejs', { user: req.session.user });
-}
-
-function requiresLogin(req, res, next) {
-	if (req.session.user) {
-		next();
-	} else {
-		const query = querystring.stringify({
-			url: req.originalUrl
-		});
-		res.status(403).redirect('/account/login?' + query);
-	}
 }

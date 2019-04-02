@@ -13,35 +13,14 @@
 			</header>
 			<p>Find your match based on the games you play!</p>
 		</section>
-			<% if (!user) { %>
-				<section id="login" class="user-input">
-					<header>
-						<h2>Login</h2>
-					</header>
-					<p>Have an account? Login here!</p>
-					<form class="" action="/account/login" method="post">
-						<label for="username">Username</label>
-						<input type="text" name="username" value="">
-						<label for="password">Password</label>
-						<input type="password" name="password" value="">
-						<button type="submit" name="button">Inloggen</button>
-					</form>
-				</section>
-				<section>
-					<header>
-						<h2>New Account</h2>
-					</header>
-					<p>Don't have an account yet?</p>
-					<a href="/account/register">Create one here</a>
-				</section>
-			<% } else { %>
+			<% if (user) { %>
 				<section>
 					<header>
 						<h2>
 							<%= 'Hello ' + user.username %>
 						</h2>
 					</header>
-					<p>We love that you are back</p>
+					<p>Welcome back</p>
 				</section>
 			<% } %>
 	</main>

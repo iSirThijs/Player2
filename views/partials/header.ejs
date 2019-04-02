@@ -3,6 +3,10 @@
 		<li><a href="/">Home</a></li>
 		<li><a href="/games">Games</a></li>
 		<li><a href="/account">Account</a></li>
-		<li><a href="#">More</a></li>
+		<% if (!user) { %>
+			<li><a href="/login">Login</a></li>
+		<% } else { %>
+			<li><a href="/account/signout">Sign Out</a></li>
+		<% } %>
 	</ul>
 </nav>
