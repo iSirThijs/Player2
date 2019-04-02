@@ -1,4 +1,7 @@
-# Project Tech
+# Player2
+Find your perfect player2 with this app! Use this app to find new friends that like the same games or use this app to date your perfect player2!
+
+# About this project
 This repository and wiki are my work for the assignments given to me for blok Tech. Blok tech is offered by the bachelor study [Communciation and Multimedia Design at the Hogeschool van Amsterdam](https://www.cmd-amsterdam.nl)
 
 Blok tech consists of the subjects:
@@ -19,7 +22,9 @@ The web application is a dating app to find a serious relationship. For my proje
 * Finding new friends to play with in addition to dating
 
 **Working feature**
-* adding and deleting games to the library
+* Creating a account
+* Sing in to an existing account
+* Searching a game to add to your profile(but not adding it)
 
 # License
 See [License](https://github.com/iSirThijs/pt-tech/blob/master/LICENSE) for more info.
@@ -44,8 +49,6 @@ Using this work without mentioning the source is not allowed. See also the websi
 	MONGODB='mongodb://localhost:30000/gamedate' or 'YOUR MONGODB PATH'
 	SESSION_SECRET= ' YOUR SECRET'
 	```
-
-
 
 # Usage
 **To start the App**
