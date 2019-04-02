@@ -1,29 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const igdbApi = require('../utils/igdbApiCall.js');
-const gamecard = require('./gamecarddata.js');
+// const igdbApi = require('../utils/igdb-api.js');
+const gameCards = require('../utils/gamecards.js');
 
 router.get('/', searchZero);
 router.get('/query?', renderResults);
-router.use(notFound);
 
 function searchZero(req, res) {
-	res.render('search/searchresult.ejs', {data : [ ], user: req.session.user });
+	res.render('search/searchresult.ejs', {data : [ ], user: req.session.user, error: false });
 }
 
-function renderResults(req, res) {
-	igdbApi.findGame(req.query.q)
-		.then(function (apiResults) {
-			gamecard.resultsList(apiResults)
-				.then((resultData) => {
-					res.render('search/searchresult.ejs', {data: resultData, user: req.session.user});
-				});
-		}
-		);
-}
-
-function notFound(req, res) {
-	res.send('cannot find ' + req.url);
+async function renderResults(req, res) {
+	try {
+		const results = await gameCards.create(req.query.q);
+		const renderData = {
+			data: results,
+			user: req.session.user,
+			error: false
+		};
+		res.render('search/searchresult.ejs', renderData);
+	} catch(err) {
+		const renderData = {
+			data: [],
+			user: req.session.user,
+			error: {
+				message: err.message
+			}
+		};
+		res.render('search/searchresult.ejs', renderData);
+	}
 }
 
 module.exports = router;

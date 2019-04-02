@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const account = require('../utils/accountUtils.js');
+const account = require('../utils/accountutils.js');
 
 router
 	.get('/', accountPage)

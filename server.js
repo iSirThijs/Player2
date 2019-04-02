@@ -21,7 +21,7 @@ server
 	.get('/login', (req, res) => res.redirect('/account/login'))
 	.use('/games', gameLibrary)
 	.use(notFound)
-	.listen(process.env.PORT);
+	.listen(process.env.PORT || 8000);
 
 function notFound(req, res) {
 	res.status(404).send('This page cannot be found');
