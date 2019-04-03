@@ -5,25 +5,57 @@ const argon2 = require('argon2');
 // required models
 const User = require('../models/user.js');
 
-exports.page = function(req, res) {
+exports.page = function(req, res, ) {
 	const query = queryString.stringify(req.query); // express parses the query, but I dont want it to
-	res.locals.query = query;
-	res.locals.user = null;
-	res.render('login.ejs');
+	const renderData =
+	{
+		query: query,
+		user: false,
+		message: false
+	};
+
+	res.render('login.ejs', renderData);
 };
 
 exports.enter = async function(req, res) {
-	try {
-		let username = req.body.username;
-		let password = req.body.password;
-		let match = await login(username, password);
+	let {username, password} = req.body;
+	const query = queryString.stringify(req.query);
+	const renderData =
+	{
+		query: query,
+		user: false,
+	};
 
-		if (match) {
+	if ( !username || username.length === 0 ) {
+		renderData.message =
+		{
+			title: 'Oops there is something wrong',
+			type: 'warning',
+			content: 'You need to enter a username'
+		};
+		res.render('login.ejs', renderData);
+	} else if (!password || password.length === 0 ) {
+		renderData.message =
+		{
+			title: 'Oops there is something wrong',
+			type: 'warning',
+			content: 'Please enter your password'
+		};
+		res.render('login.ejs', renderData);
+	} else {
+		try {
+			await login(username, password);
 			req.session.user = {username: username};
 			res.redirect(req.query.url || '/'); //the originalUrl must be parsed here
+		} catch(err) {
+			renderData.message =
+			{
+				title: 'Oops there is something wrong',
+				type: 'error',
+				content: err.message
+			};
+			res.render('login.ejs', renderData);
 		}
-	} catch(err) {
-		res.redirect('/');
 	}
 };
 
@@ -43,17 +75,20 @@ function login(username, password) {
 		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
 		const db = mongoose.connection;
 
-		db.on('error', (err) => reject(err));
+		db.on('error', () => reject(new Error('There was a problem on the server')));
 		db.once('open', async function() {
 			let data = await User.find({ username: username});
 			let user = data && data[0];
 
-			if (user) {
-				let match = await argon2.verify(user.hash, password);
-				resolve(match);
-			} else {
-				reject('This user does not exist');
-			}
+			if(user) {
+				try {
+					let match = await argon2.verify(user.hash, password);
+					if (match) resolve(match);
+					else reject(new Error('Wrong Password'));
+				} catch(err) {
+					reject(new Error('There was a problem on the server'));
+				}
+			} else reject(new Error('This user does\'t exist'));
 		});
 	});
 }

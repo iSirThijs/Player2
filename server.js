@@ -37,3 +37,7 @@ function notFound(req, res) {
 function home(req, res) {
 	res.render('home.ejs', { user: req.session.user });
 }
+
+// function errorHandler(err, req, res, next) {
+//
+// }

@@ -7,26 +7,38 @@ router.get('/', searchZero);
 router.get('/query?', renderResults);
 
 function searchZero(req, res) {
-	res.render('search/searchresult.ejs', {data : [ ], user: req.session.user, error: false });
+	const renderData =
+	{
+		data : [ ],
+		user: req.session.user,
+		message: false
+	};
+	res.render('search/searchresult.ejs', renderData );
 }
 
 async function renderResults(req, res) {
 	try {
 		const results = await gameCards.create(req.query.q);
-		const renderData = {
+		const renderData =
+		{
 			data: results,
 			user: req.session.user,
-			error: false
+			message: false
 		};
 		res.render('search/searchresult.ejs', renderData);
+
 	} catch(err) {
-		const renderData = {
+		const renderData =
+		{
 			data: [],
 			user: req.session.user,
-			error: {
-				message: err.message
+			message: {
+				title: 'Oops, something went wrong',
+				type: 'error',
+				content: err.message
 			}
 		};
+
 		res.render('search/searchresult.ejs', renderData);
 	}
 }
