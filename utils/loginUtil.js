@@ -6,24 +6,33 @@ const argon2 = require('argon2');
 const User = require('../models/user.js');
 
 exports.page = function(req, res) {
-	const query = queryString.stringify(req.query); // express parses the query, but I dont want it to
-	res.locals.query = query;
-	res.locals.user = null;
-	res.render('login.ejs');
+	if(!req.session.user) {
+		const query = queryString.stringify(req.query); // express parses the query, but I dont want it to
+		res.locals.query = query;
+		res.render('login.ejs');
+	} else res.redirect('/profile');
 };
 
-exports.enter = async function(req, res) {
+exports.enter = async function(req, res, next) {
 	try {
 		let username = req.body.username;
 		let password = req.body.password;
 		let match = await login(username, password);
 
 		if (match) {
-			req.session.user = {username: username};
-			res.redirect(req.query.url || '/'); //the originalUrl must be parsed here
+			req.session.user = { username: username};
+			res.redirect(req.query.url || '/'); //the originalUrl must be passed here
+		} else {
+			const query = queryString.stringify(req.query); // express parses the query, but I dont want it to
+			res.locals.query = query;
+			res.locals.notification = {
+				type: 'warning',
+				content: 'Password isn\'t correct'
+			};
+			res.render('login.ejs');
 		}
 	} catch(err) {
-		res.redirect('/');
+		next(err);
 	}
 };
 
@@ -38,9 +47,21 @@ exports.require = function(req, res, next) {
 	}
 };
 
+exports.nonRequire = function(req, res, next) {
+	if (!req.session.user) {
+		next();
+	} else {
+		res.redirect('/profile');
+	}
+};
+
 function login(username, password) {
 	return new Promise(function(resolve, reject) {
-		mongoose.connect(process.env.MONGODB, { dbName: 'gamerdate'});
+		mongoose.connect(process.env.MONGODB,
+			{
+				dbName: 'gamerdate',
+				useNewUrlParser: true
+			});
 		const db = mongoose.connection;
 
 		db.on('error', (err) => reject(err));

@@ -4,11 +4,12 @@ const server = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
-// own modules
-const gameLibrary = require('./controllers/gamelibrary.js');
-const account = require('./controllers/accountpage.js');
-const login = require('./utils/login.js');
-const register = require('./utils/register.js');
+// Controllers
+const profile = require('./controllers/profile/profile.js');
+const account = require('./controllers/account.js');
+
+// Utils
+const loginUtil = require('./utils/loginUtil.js');
 
 server
 	.use('/static', express.static('./public'))
@@ -20,13 +21,12 @@ server
 	}))
 	.set('view engine', 'ejs')
 	.set('views', './views' )
-	.get('/', home)
-	.get('/register', register.page)
-	.post('/register', register.create)
-	.get('/login', login.page)
-	.post('/login', login.enter)
-	.use('/account', login.require, account)
-	.use('/games', login.require, gameLibrary)
+	.use(setLocals)
+	.get('/', loginUtil.nonRequire, home)
+	.get('/login', loginUtil.nonRequire, loginUtil.page)
+	.post('/login', loginUtil.nonRequire, loginUtil.enter)
+	.use('/account', account)
+	.use('/profile', loginUtil.require, profile)
 	.use(notFound)
 	.listen(process.env.PORT || 8000);
 
@@ -35,5 +35,17 @@ function notFound(req, res) {
 }
 
 function home(req, res) {
-	res.render('home.ejs', { user: req.session.user });
+	res.render('home.ejs');
+}
+
+function setLocals(req, res, next) {
+	if (req.session.user) {
+		res.locals.user = req.session.user;
+		res.locals.notification = false;
+		next();
+	} else {
+		res.locals.user = false;
+		res.locals.notification = false;
+		next();
+	}
 }

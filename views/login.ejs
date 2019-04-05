@@ -7,6 +7,9 @@
 		<h1>Account<span>login</span></h1>
 	</header>
 	<main>
+		<% if (notification) { %>
+			<% include ./partials/notification.ejs %>
+		<% } %>
 		<% if (query) { %>
 			<section>
 				<header>
@@ -33,7 +36,7 @@
 				<h2>New Account</h2>
 			</header>
 			<p>Don't have an account yet?</p>
-			<a href="/register">Create one here</a>
+			<a href="/account/register">Create one here</a>
 		</section>
 	</main>
 </body>

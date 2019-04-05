@@ -42,6 +42,6 @@ exports.findGames = async function(query) {
 
 		return results.data;
 	} catch(err) {
-		throw new Error('There was a problem on the server');
+		throw {type: 'error'};
 	}
 };

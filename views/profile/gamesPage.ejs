@@ -7,6 +7,9 @@
 		<h1>Profile<span>my games</span></h1>
 	</header>
 	<main>
+		<% if (notification) { %>
+			<% include ../partials/notification.ejs %>
+		<% } %>
 		<section>
 			<header>
 				<h2>All Games</h2>

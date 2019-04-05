@@ -1,8 +1,9 @@
-const igdbApi = require('./igdb-api.js');
+const igdbApi = require('./igdbApiUtil.js');
 
-exports.create = async function(query) {
+exports.cards = async function(query) {
 	if ( !query || query.length === 0 ) {
-		throw new Error('Please provide a search querry');
+		let err = { type: 'warning', content:'Please provide a search query' };
+		throw err;
 	} else {
 		try {
 			const promises = [];

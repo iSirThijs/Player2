@@ -4,7 +4,7 @@
 <body class="no-js">
 	<header>
 		<% include ../partials/header.ejs %>
-		<h1>Account<span>login</span></h1>
+		<h1>Profile<span><%= user.username %></span></h1>
 	</header>
 	<main>
 		<% if (notification) { %>
