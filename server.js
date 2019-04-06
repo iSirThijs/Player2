@@ -27,12 +27,9 @@ server
 	.post('/login', loginUtil.nonRequire, loginUtil.enter)
 	.use('/account', account)
 	.use('/profile', loginUtil.require, profile)
-	.use(notFound)
+	.use((req, res) => res.status(404).render('notFound.ejs'))
+	.use((err, req, res) => res.status(500).render('errorPage.ejs'))
 	.listen(process.env.PORT || 8000);
-
-function notFound(req, res) {
-	res.status(404).send('This page cannot be found');
-}
 
 function home(req, res) {
 	res.render('home.ejs');
