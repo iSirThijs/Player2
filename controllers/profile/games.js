@@ -9,7 +9,8 @@ router
 	.get('/', gamesList )
 	.get('/search', (req, res) => res.render('profile/searchPage.ejs', {data : []}))
 	.get('/search/query?', searchResult)
-	.post('/add/:id', addGame);
+	.post('/add/:id', addGame)
+	.post('/delete/:id', removeGame);
 
 async function gamesList(req, res) {
 	let data = [];
@@ -19,14 +20,11 @@ async function gamesList(req, res) {
 	} catch(err) {
 		res.locals.notification = err;
 	} finally {
+		req.session.data = data;
 		res.locals.data = data;
 		res.render('./profile/gamesPage.ejs');
 	}
 }
-
-
-
-
 
 async function searchResult(req, res) {
 	try {
@@ -59,6 +57,24 @@ async function addGame(req, res) {
 		console.log(err); //eslint-disable-line
 		res.locals.notification = err;
 		res.render('profile/gamesPage.ejs', {data: []});
+	}
+
+}
+
+async function removeGame(req, res) {
+	const userID = req.session.user.id;
+	const gameID = req.params.id;
+	const data = req.session.data;
+
+	try {
+		await accountUtil.removeGame(userID, gameID);
+		req.session.data = [];
+		res.redirect('/profile/games');
+	} catch(err) {
+		res.locals.notification = err;
+		res.locals.data = data;
+		req.session.data = [];
+		res.render('./profile/gamesPage.ejs');
 	}
 
 }

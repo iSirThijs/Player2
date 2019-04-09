@@ -85,6 +85,29 @@ exports.addGame = function(userID, gameID) {
 		});
 	});
 };
+exports.removeGame = function(userID, gameID) {
+	return new Promise(function(resolve, reject) {
+		mongoose.connect(process.env.MONGODB,
+			{
+				dbName: 'gamerdate',
+				useNewUrlParser: true
+			});
+		const db = mongoose.connection;
+
+		db.on('error', () => reject({type: 'error'}));
+		db.once('open', async function () {
+			try {
+				const user = await User.findById(userID);
+
+				user.games.remove(gameID);
+				await user.save();
+				resolve();
+			} catch(err) {
+				reject({type: 'error', content: 'in Addgame'});
+			}
+		});
+	});
+};
 
 exports.listGames = function(userID) {
 	return new Promise(async function(resolve, reject) {
