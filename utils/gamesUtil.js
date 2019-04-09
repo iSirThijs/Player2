@@ -83,7 +83,7 @@ exports.save = async function(game) {
 
 		mongoose.connect(process.env.MONGODB,
 			{
-				dbName: 'gamerdate',
+				dbName: 'player2',
 				useNewUrlParser: true
 			});
 

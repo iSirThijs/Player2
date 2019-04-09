@@ -8,7 +8,7 @@ exports.create = function (userInfo) {
 	return new Promise(function(resolve, reject) {
 		mongoose.connect(process.env.MONGODB,
 			{
-				dbName: 'gamerdate',
+				dbName: 'player2',
 				useNewUrlParser: true
 			});
 
@@ -36,7 +36,7 @@ exports.checkExistence = function(check, info) {
 	return new Promise(function(resolve, reject) {
 		mongoose.connect(process.env.MONGODB,
 			{
-				dbName: 'gamerdate',
+				dbName: 'player2',
 				useNewUrlParser: true
 			});
 		const db = mongoose.connection;
@@ -66,7 +66,7 @@ exports.addGame = function(userID, gameID) {
 	return new Promise(function(resolve, reject) {
 		mongoose.connect(process.env.MONGODB,
 			{
-				dbName: 'gamerdate',
+				dbName: 'player2',
 				useNewUrlParser: true
 			});
 		const db = mongoose.connection;
@@ -89,7 +89,7 @@ exports.removeGame = function(userID, gameID) {
 	return new Promise(function(resolve, reject) {
 		mongoose.connect(process.env.MONGODB,
 			{
-				dbName: 'gamerdate',
+				dbName: 'player2',
 				useNewUrlParser: true
 			});
 		const db = mongoose.connection;
