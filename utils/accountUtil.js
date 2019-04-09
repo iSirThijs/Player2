@@ -22,7 +22,6 @@ exports.create = function (userInfo) {
 				username: userInfo.username,
 				email: userInfo.email,
 				hash: await argon2.hash(userInfo.password),
-				games: []
 			});
 
 			newUser.save( function(err) {
@@ -60,5 +59,29 @@ exports.checkPassReqs = function(password) {
 
 		if (password.length > min && password.length < max) resolve();
 		else reject({type: 'warning', content: 'Password doensn\'t meet requirements'});
+	});
+};
+
+exports.addGame = async function(username, gameID) {
+	return new Promise(function(resolve, reject) {
+		mongoose.connect(process.env.MONGODB,
+			{
+				dbName: 'gamerdate',
+				useNewUrlParser: true
+			});
+		const db = mongoose.connection;
+
+		db.on('error', () => reject({type: 'error'}));
+		db.once('open', async function () {
+			try {
+				const user = await User.findOne(username);
+
+				user.games.push(gameID);
+				await user.save();
+				resolve();
+			} catch(err) {
+				reject({type: 'error', content: 'in Addgame'});
+			}
+		});
 	});
 };
