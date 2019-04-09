@@ -24,9 +24,9 @@ exports.create = function (userInfo) {
 				hash: await argon2.hash(userInfo.password),
 			});
 
-			newUser.save( function(err) {
-				if (err) reject({type: 'error'});
-				else resolve();
+			newUser.save( function(err, user) {
+				if (err) reject({type: 'error'})
+				else resolve(user);
 			});
 		});
 	});

@@ -58,7 +58,7 @@ exports.findGameById = async function(gameID) {
 
 		mongoose.connect(process.env.MONGODB,
 			{
-				dbName: 'gamerdate',
+				dbName: 'player2',
 				useNewUrlParser: true
 			});
 

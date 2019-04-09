@@ -64,7 +64,7 @@ function login(username, password) {
 	return new Promise(function(resolve, reject) {
 		mongoose.connect(process.env.MONGODB,
 			{
-				dbName: 'gamerdate',
+				dbName: 'player2',
 				useNewUrlParser: true
 			});
 		const db = mongoose.connection;
