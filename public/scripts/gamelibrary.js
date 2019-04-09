@@ -24,3 +24,27 @@
 		cardAddGame.classList.toggle('edit-mode');
 	});
 })();
+
+(function() {
+	let deleteForm = document.getElementsByClassName('delete-form');
+	for (let i = 0; i <deleteForm.length; i++) {
+		deleteForm[i].addEventListener('submit', deleteGame);
+	}
+
+
+	async function deleteGame(event) {
+		event.preventDefault();
+		let url = event.target.getAttribute('action');
+		let article = event.target.parentNode;
+		const request = new Request(url, {
+			method: 'DELETE',
+		});
+
+		let response = await fetch(request);
+
+		if (response.ok && response.status == 204) {
+			article.parentNode.removeChild(article);
+		}
+
+	}
+}());

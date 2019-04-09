@@ -37,6 +37,9 @@
     "express-session": "^1.15.6",
     "mongoose": "^5.4.20"
   },
+  "nodemonConfig": {
+    "ignore": ["/public/scripts/*.js"]
+  },
   "eslintIgnore": [
     "*.ejs",
     "node_modules/"

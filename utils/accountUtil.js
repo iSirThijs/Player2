@@ -80,7 +80,7 @@ exports.addGame = function(userID, gameID) {
 				await user.save();
 				resolve();
 			} catch(err) {
-				reject({type: 'error', content: 'in Addgame'});
+				reject({type: 'error'});
 			}
 		});
 	});
@@ -103,7 +103,7 @@ exports.removeGame = function(userID, gameID) {
 				await user.save();
 				resolve();
 			} catch(err) {
-				reject({type: 'error', content: 'in Addgame'});
+				reject({type: 'error'});
 			}
 		});
 	});

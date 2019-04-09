@@ -4,7 +4,7 @@
 <body class="no-js">
 	<header>
 		<% include ../partials/header.ejs %>
-		<h1>Profile<span>my games</span></h1>
+		<h1><%= user.username %><span>games</span></h1>
 	</header>
 	<main>
 		<% if (notification) { %>
@@ -26,8 +26,8 @@
 			<article class="card-game">
 				<h3><%= data[index].title %></h3>
 				<img src=<%= data[index].img %>>
-				<form action="games/delete/<%= data[index].id %>" method="post">
-					<button class="icon-trash"type="submit">Delete</button>
+				<form class="delete-form" action="games/delete/<%= data[index].id %>" method="post">
+					<button class="icon-trash" type="submit">Delete</button>
 				</form>
 			</article>
 			<% } %>

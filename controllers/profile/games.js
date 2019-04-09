@@ -10,7 +10,8 @@ router
 	.get('/search', (req, res) => res.render('profile/searchPage.ejs', {data : []}))
 	.get('/search/query?', searchResult)
 	.post('/add/:id', addGame)
-	.post('/delete/:id', removeGame);
+	.post('/delete/:id', removeGame)
+	.delete('/delete/:id', removeGame);
 
 async function gamesList(req, res) {
 	let data = [];
@@ -65,18 +66,27 @@ async function removeGame(req, res) {
 	const userID = req.session.user.id;
 	const gameID = req.params.id;
 	const data = req.session.data;
+	const method = req.method;
 
 	try {
 		await accountUtil.removeGame(userID, gameID);
-		req.session.data = [];
-		res.redirect('/profile/games');
-	} catch(err) {
-		res.locals.notification = err;
-		res.locals.data = data;
-		req.session.data = [];
-		res.render('./profile/gamesPage.ejs');
-	}
 
+		if (method === 'DELETE') {
+			res.status(204).send();
+		} else {
+			req.session.data = [];
+			res.redirect('/profile/games');
+		}
+	} catch(err) {
+		if (method === 'DELETE') {
+			res.status(500).json(err);
+		} else {
+			res.locals.notification = err;
+			res.locals.data = data;
+			req.session.data = [];
+			res.render('./profile/gamesPage.ejs');
+		}
+	}
 }
 
 module.exports = router;

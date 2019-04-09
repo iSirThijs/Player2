@@ -4,21 +4,20 @@
 <body class="no-js">
 	<header>
 		<% include ../partials/header.ejs %>
-		<h1>Profile<span><%= user.username %></span></h1>
+		<h1><%= user.username %><span>profile</span></h1>
 	</header>
 	<main>
 		<% if (notification) { %>
 			<% include ../partials/notification.ejs %>
 		<% } %>
-			<section class="user-input">
-				<header>
-					<h2>Sign Out</h2>
-				</header>
-				<p><%= 'Hello ' + user.username + ', sign out here' %></p>
-				<form class="" action="/account/signout" method="get">
-					<button type="submit" name="signout">Sign Out</button>
-				</form>
-			</section>
+		<section>
+			<header>
+				<h2>Games</h2>
+			</header>
+			<footer>
+				<a href="/profile/games">See more</a>
+			</footer>
+		</section>
 	</main>
 </body>
 </html>
