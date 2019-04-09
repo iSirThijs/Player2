@@ -62,7 +62,7 @@ exports.checkPassReqs = function(password) {
 	});
 };
 
-exports.addGame = async function(username, gameID) {
+exports.addGame = function(userID, gameID) {
 	return new Promise(function(resolve, reject) {
 		mongoose.connect(process.env.MONGODB,
 			{
@@ -74,7 +74,7 @@ exports.addGame = async function(username, gameID) {
 		db.on('error', () => reject({type: 'error'}));
 		db.once('open', async function () {
 			try {
-				const user = await User.findOne(username);
+				const user = await User.findById(userID);
 
 				user.games.push(gameID);
 				await user.save();
@@ -83,5 +83,21 @@ exports.addGame = async function(username, gameID) {
 				reject({type: 'error', content: 'in Addgame'});
 			}
 		});
+	});
+};
+
+exports.listGames = function(userID) {
+	return new Promise(async function(resolve, reject) {
+		try {
+			const user =
+			await User
+				.findById(userID)
+				.select('games')
+				.populate('games');
+
+			resolve(user.games);
+		} catch(err) {
+			reject({ type: 'error'});
+		}
 	});
 };

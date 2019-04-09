@@ -98,7 +98,7 @@ exports.save = async function(game) {
 			});
 
 			newGame.save( function(err) {
-				if (err) reject({type: 'error'})
+				if (err) reject({type: 'error'});
 				else resolve();
 			});
 		});

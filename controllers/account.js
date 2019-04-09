@@ -20,8 +20,11 @@ async function register(req, res) {
 		await accountUtil.checkPassReqs(userInfo.password);
 
 		// actually saving the user to the database
-		await accountUtil.create(userInfo);
-		req.session.user = req.body.username;
+		let user = await accountUtil.create(userInfo);
+		req.session.user = {
+			username: user.username,
+			_id: user._id
+		};
 		res.redirect('/profile');
 	} catch(err) {
 		res.locals.notification = err;

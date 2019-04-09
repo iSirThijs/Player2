@@ -6,10 +6,27 @@ const gamesUtil = require('../../utils/gamesUtil.js');
 const accountUtil = require('../../utils/accountUtil.js');
 
 router
-	.get('/', (req, res) => res.render('profile/gamesPage.ejs', {data : []}) )
+	.get('/', gamesList )
 	.get('/search', (req, res) => res.render('profile/searchPage.ejs', {data : []}))
 	.get('/search/query?', searchResult)
 	.post('/add/:id', addGame);
+
+async function gamesList(req, res) {
+	let data = [];
+	try {
+		const userID = req.session.user.id;
+		data = await accountUtil.listGames(userID);
+	} catch(err) {
+		res.locals.notification = err;
+	} finally {
+		res.locals.data = data;
+		res.render('./profile/gamesPage.ejs');
+	}
+}
+
+
+
+
 
 async function searchResult(req, res) {
 	try {
@@ -24,7 +41,7 @@ async function searchResult(req, res) {
 }
 
 async function addGame(req, res) {
-	const username = req.session.user;
+	const userID = req.session.user.id;
 	const gameID = req.params.id;
 
 	try {
@@ -35,7 +52,7 @@ async function addGame(req, res) {
 			await gamesUtil.save(game);
 		}
 
-		await accountUtil.addGame(username, gameID);
+		await accountUtil.addGame(userID, gameID);
 
 		res.redirect('/profile/games');
 	} catch(err) {

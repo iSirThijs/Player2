@@ -17,10 +17,15 @@ exports.enter = async function(req, res, next) {
 	try {
 		let username = req.body.username;
 		let password = req.body.password;
-		let match = await login(username, password);
+		let result = await login(username, password);
+		let {match, user} = result;
 
 		if (match) {
-			req.session.user = { username: username};
+			req.session.user =
+			{
+				username: user.username,
+				id: user._id
+			};
 			res.redirect(req.query.url || '/'); //the originalUrl must be passed here
 		} else {
 			const query = queryString.stringify(req.query); // express parses the query, but I dont want it to
@@ -71,7 +76,10 @@ function login(username, password) {
 
 			if (user) {
 				let match = await argon2.verify(user.hash, password);
-				resolve(match);
+				resolve({
+					match: match,
+					user: user
+				});
 			} else {
 				reject('This user does not exist');
 			}
