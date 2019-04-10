@@ -6,23 +6,13 @@
 		<% include ./partials/header.ejs %>
 		<h1>Home<span>welcome</span></h1>
 	</header>
-	<main>
+	<main class="fade-in">
 		<section>
 			<header>
 				<h2>Find your Player 2</h2>
 			</header>
 			<p>Find your match based on the games you play!</p>
 		</section>
-			<% if (user) { %>
-				<section>
-					<header>
-						<h2>
-							<%= 'Hello ' + user.username %>
-						</h2>
-					</header>
-					<p>Welcome back</p>
-				</section>
-			<% } %>
 	</main>
 </body>
 </html>

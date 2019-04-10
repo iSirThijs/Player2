@@ -6,10 +6,7 @@
 		<% include ./partials/header.ejs %>
 		<h1>Account<span>login</span></h1>
 	</header>
-	<main>
-		<% if (notification) { %>
-			<% include ./partials/notification.ejs %>
-		<% } %>
+	<main class="fade-in">
 		<% if (query) { %>
 			<section>
 				<header>
@@ -39,5 +36,8 @@
 			<a href="/account/register">Create one here</a>
 		</section>
 	</main>
+	<% if (notification) { %>
+		<% include ./partials/notification.ejs %>
+	<% } %>
 </body>
 </html>

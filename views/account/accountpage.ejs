@@ -6,10 +6,7 @@
 		<% include ../partials/header.ejs %>
 		<h1>Account<span><%=user.username%></span></h1>
 	</header>
-	<main>
-		<% if (notification) { %>
-			<% include ../partials/notification.ejs %>
-		<% } %>
+	<main class="fade-in">
 			<section class="user-input">
 				<header>
 					<h2>Sign Out</h2>
@@ -20,5 +17,8 @@
 				</form>
 			</section>
 	</main>
+	<% if (notification) { %>
+		<% include ../partials/notification.ejs %>
+	<% } %>
 </body>
 </html>

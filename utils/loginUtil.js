@@ -13,7 +13,7 @@ exports.page = function(req, res) {
 	} else res.redirect('/profile');
 };
 
-exports.enter = async function(req, res, next) {
+exports.enter = async function(req, res) {
 	try {
 		let username = req.body.username;
 		let password = req.body.password;
@@ -37,7 +37,10 @@ exports.enter = async function(req, res, next) {
 			res.render('login.ejs');
 		}
 	} catch(err) {
-		next(err);
+		const query = queryString.stringify(req.query); // express parses the query, but I dont want it to
+		res.locals.query = query;
+		res.locals.notification = err;
+		res.render('login.ejs');
 	}
 };
 
@@ -81,7 +84,7 @@ function login(username, password) {
 					user: user
 				});
 			} else {
-				reject('This user does not exist');
+				reject({type: 'warning', content: 'This user doesn\'t exist'});
 			}
 		});
 	});

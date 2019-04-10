@@ -6,10 +6,7 @@
 		<% include ../partials/header.ejs %>
 		<h1><%= user.username %><span>profile</span></h1>
 	</header>
-	<main>
-		<% if (notification) { %>
-			<% include ../partials/notification.ejs %>
-		<% } %>
+	<main class="fade-in">
 		<section>
 			<header>
 				<h2>Games</h2>
@@ -19,5 +16,8 @@
 			</footer>
 		</section>
 	</main>
+	<% if (notification) { %>
+		<% include ../partials/notification.ejs %>
+	<% } %>
 </body>
 </html>

@@ -25,7 +25,7 @@ exports.create = function (userInfo) {
 			});
 
 			newUser.save( function(err, user) {
-				if (err) reject({type: 'error'})
+				if (err) reject({type: 'error'});
 				else resolve(user);
 			});
 		});

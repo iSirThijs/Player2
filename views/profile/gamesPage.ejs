@@ -6,7 +6,7 @@
 		<% include ../partials/header.ejs %>
 		<h1><%= user.username %><span>games</span></h1>
 	</header>
-	<main>
+	<main class="fade-in">
 		<% if (notification) { %>
 			<% include ../partials/notification.ejs %>
 		<% } %>
@@ -33,6 +33,9 @@
 			<% } %>
 		</section>
 	</main>
+	<% if (notification) { %>
+		<% include ../partials/notification.ejs %>
+	<% } %>
 	<script src="/static/scripts/gamelibrary.js"></script>
 </body>
 </html>

@@ -28,14 +28,25 @@ async function gamesList(req, res) {
 }
 
 async function searchResult(req, res) {
+	let accept = req.accepts('html');
+
 	try {
 		const results = await gamesUtil.cards(req.query.q);
-		res.locals.data = results;
-		res.render('profile/searchPage.ejs');
+
+		if (!accept) {
+			res.status(200).json(results);
+		} else {
+			res.locals.data = results;
+			res.render('profile/searchPage.ejs');
+		}
 	} catch(err) {
-		res.locals.notification = err;
-		res.locals.data = [];
-		res.render('profile/searchPage.ejs');
+		if (!accept) {
+			res.status(500).send();
+		} else {
+			res.locals.notification = err;
+			res.locals.data = [];
+			res.render('profile/searchPage.ejs');
+		}
 	}
 }
 

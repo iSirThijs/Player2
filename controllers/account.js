@@ -27,7 +27,6 @@ async function register(req, res) {
 		};
 		res.redirect('/profile');
 	} catch(err) {
-		console.log(err);
 		res.locals.notification = err;
 		res.render('account/register.ejs');
 	}
