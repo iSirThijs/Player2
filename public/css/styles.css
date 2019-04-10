@@ -26,15 +26,12 @@ body {
 }
 
 main {
-	padding: 10px;
-}
-
-footer {
-	padding: 10px;
-	box-sizing: border-box;
-	width: 100%;
-	position: fixed;
-	bottom: 0;
+	max-width: 38rem;
+	padding: 1.5rem;
+	margin: auto;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
 }
 
 a {
@@ -63,7 +60,14 @@ button {
 /* Header settings */
 body > header {
 	background-color: var(--bg1);
+	border-bottom: 1px solid var(--alt-primary-accent);
 	width: 100%;
+}
+
+body > header nav {
+	max-width: 38rem;
+	width: 100%;
+	margin: auto;
 }
 
 body > header nav ul {
@@ -101,10 +105,10 @@ h1 {
 	font-family: var(--font-heading);
 	background-color: var(--bg1);
 	font-size: 2.5em;
-	margin: 0;
+	margin: 0 auto;
 	padding: 10px 10px 0;
-	border-bottom: 1px solid var(--alt-primary-accent);
 	width: 100%;
+	max-width: 38rem;
 	box-sizing: border-box;
 }
 
@@ -112,6 +116,15 @@ h1 span {
 	font-size: 50%;
 	margin-left: 5px;
 	color: var(--primary-accent);
+}
+
+body > footer {
+	padding: 10px;
+	box-sizing: border-box;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	margin: auto;
 }
 
 /* Standard Section */
@@ -123,6 +136,7 @@ section {
 	margin: 0 0 10px;
 	border-radius: 10px;
 	background-color: var(--bg3);
+	width: 100%;
 }
 
 section header {
@@ -150,8 +164,7 @@ section header button {
 	padding-top: 1em;
 }
 
-section p,
-section a {
+section p {
 	margin: 10px;
 }
 

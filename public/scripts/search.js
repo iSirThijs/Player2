@@ -4,9 +4,14 @@
 
 	async function searchResults(event) {
 		event.preventDefault();
-		let action = event.target.getAttribute('action');
-		let query = document.getElementById('query').value;
-		let url =  action + '?q=' + query;
+		const action = event.target.getAttribute('action');
+		const query = document.getElementById('query').value;
+		const url =  action + '?q=' + query;
+		const resultList = document.getElementById('resultlist');
+
+		while(resultList.firstChild) {
+			resultList.removeChild(resultList.firstChild);
+		}
 
 		const request = new Request(url, {
 			method: 'GET',
@@ -18,8 +23,8 @@
 		const response = await fetch(request);
 
 		if (response.ok && response.status == 200) {
+			history.pushState('', '', action + '?q=' + query);
 			let games = await response.json();
-			const resultList = document.getElementById('resultlist');
 
 			games.forEach((game) => {
 				resultList.appendChild(createCard(game));
@@ -61,11 +66,3 @@
 		return newArticle;
 	}
 }());
-
-// article class="card-game">
-// 	<h3><%= data[index].title %></h3>
-// 	<img src=<%= data[index].img %>>
-// 	<form class="" action="/profile/games/add/<%= data[index].id %>" method="post">
-// 		<button class="icon-plus" type="submit" class="addIcon">Add Game</button>
-// 	</form>
-// </article>
