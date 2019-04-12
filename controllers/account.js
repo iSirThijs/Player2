@@ -23,7 +23,7 @@ async function register(req, res) {
 		let user = await accountUtil.create(userInfo);
 		req.session.user = {
 			username: user.username,
-			_id: user._id
+			id: user._id
 		};
 		res.redirect('/profile');
 	} catch(err) {

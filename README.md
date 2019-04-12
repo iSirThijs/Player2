@@ -1,6 +1,8 @@
 # Player2
 Find your perfect player2 with this app! Use this app to find new friends that like the same games or use this app to date your perfect player2!
 
+![Screen1](https://github.com/iSirThijs/Player2/wiki/images/fp2home.png)
+
 # About this project
 This repository and wiki are my work for the assignments given to me for blok Tech. Blok tech is offered by the bachelor study [Communciation and Multimedia Design at the Hogeschool van Amsterdam](https://www.cmd-amsterdam.nl)
 
