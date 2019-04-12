@@ -2,6 +2,7 @@
 	/* Custom properties for fonts */
 	--font-body: 'open sans', sans-serif;
 	--font-heading: 'futura-pt', sans-serif;
+	--font-game: 'lores-12', sans-serif;
 
 	/*  Custom properties for colors */
 	--primary-accent: rgb(136, 75, 232);
@@ -50,7 +51,10 @@ input[type=number] {
 }
 
 button {
-	padding: 10px;
+	font-family: var(--font-game);
+	color: var(--primary-accent);
+	font-weight: 700;
+	padding: 1em;
 	margin: 1em 0;
 	background-color: var(--secondary-accent);
 	border: none;
@@ -79,6 +83,7 @@ body > header nav ul {
 }
 
 body > header nav li {
+	font-family: var(--font-game);
 	flex: 1 0 25%;
 }
 
@@ -102,7 +107,7 @@ body > header nav a:active {
 
 /* Street Sign */
 h1 {
-	font-family: var(--font-heading);
+	font-family: var(--font-game);
 	background-color: var(--bg1);
 	font-size: 2.5em;
 	margin: 0 auto;
@@ -113,6 +118,7 @@ h1 {
 }
 
 h1 span {
+	font-family: var(--font-heading);
 	font-size: 50%;
 	margin-left: 5px;
 	color: var(--primary-accent);
@@ -150,8 +156,8 @@ section header {
 section header h2 {
 	flex-grow: 2;
 	align-self: stretch;
-	margin: 10px 10px 0;
-	font-family: var(--font-heading);
+	margin: 10px 10px;
+	font-family: var(--font-game);
 	font-weight: normal;
 }
 
@@ -193,6 +199,7 @@ section a {
 }
 
 .user-input label {
+	font-size: 80%;
 	margin: 15px 0 2px;
 }
 
@@ -204,6 +211,44 @@ section a {
 	flex-grow: 1;
 	align-self: center;
 	margin-right: 10px;
+}
+
+.game {
+	font-family: var(--font-game);
+	font-weight: 700;
+	font-style: normal;
+	text-align: center;
+	font-size: 150%;
+}
+
+.start {
+	font-family: var(--font-game);
+	font-weight: 700;
+	font-size: 125%;
+	text-decoration: none;
+	text-align: center;
+	padding: 1rem;
+	background-color: var(--secondary-accent);
+	border-radius: 5px;
+	margin: 10px;
+}
+
+.continue {
+	font-family: lores-12, sans-serif;
+	font-weight: 700;
+	font-size: 125%;
+	text-decoration: none;
+	text-align: center;
+	padding: 1rem;
+	background-color: var(--alt-primary-accent);
+	color: var(--secondary-accent);
+	border-radius: 5px;
+	margin: 10px;
+}
+
+section > img {
+	width: 50%;
+	margin: 2rem auto;
 }
 
 /* GameCard */
